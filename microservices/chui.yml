@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: https://openfaas.chuistack.com
+functions:
+  verify-jwt:
+    lang: node10-express
+    handler: ./verify-jwt
+    image: chuistack/verify-jwt:latest

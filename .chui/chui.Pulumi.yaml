@@ -1,0 +1,19 @@
+name: {{globalAppName}}-{{application}}
+runtime: nodejs
+description: An application that includes a GraphQL API built on Hasura, with migrations managed by Django and a react frontend.
+template:
+  dbName:
+    description: {{application}}'s database name
+    secret: true
+  dbPassword:
+    description: {{application}}'s database password
+    secret: true
+  dbUsername:
+    description: {{application}}'s database username
+    secret: true
+  hasuraAdminSecret:
+    description: password to access the Hasura admin
+    secret: true
+  hasuraEndpoint:
+    description: The endpoint to reach the {{application}} endpoint.
+    default:
