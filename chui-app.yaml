@@ -1,5 +1,5 @@
 version: 0.1.0
-source: git@github.com:chuistack/chui-infrastructure-digitalocean.git
+source: git@github.com:chuistack/chui-hasura-django-api.git
 type: app
 dependencies:
   storage: minio
