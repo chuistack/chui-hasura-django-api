@@ -1,6 +1,6 @@
 name: {{globalAppName}}-{{application}}
 runtime: nodejs
-description: An application that includes a GraphQL API built on Hasura, with migrations managed by Django and a react frontend.
+description: Deploys Postgres, Hasura, and migrations managed by Django to the {{globalAppName}} cluster.
 template:
   dbName:
     description: {{application}}'s database name
