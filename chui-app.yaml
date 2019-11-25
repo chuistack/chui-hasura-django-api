@@ -1,6 +1,8 @@
 version: 0.1.0
 source: git@github.com:chuistack/chui-hasura-django-api.git
 type: app
+name: {{application}}
+globalAppName: {{globalAppName}}
 dependencies:
   storage: minio
   auth: keycloak

@@ -4,23 +4,7 @@ import {Chui} from "@chuistack/chui-lib";
 
 const config = new Config();
 const chui = Chui.Config.loadCurrentConfig();
-const core = new StackReference(`${chui.pulumiOrgName}/${chui.globalAppName}-core/${getStack()}`);
 const appName = Chui.Config.getCurrentAppName();
-
-
-/***********************
- * CERT MANAGER        *
- ***********************/
-
-export const PRODUCTION_CLUSTER_ISSUER_ANNOTATION = core.getOutput('productionClusterIssuerAnnotation');
-export const STAGING_CLUSTER_ISSUER_ANNOTATION = core.getOutput('stagingClusterIssuerAnnotation');
-
-
-/***********************
- * INGRESS             *
- ***********************/
-
-export const INGRESS_CLASS_ANNOTATION = core.getOutput('ingressClassAnnotation');
 
 
 /***********************

@@ -1,21 +1,22 @@
 import * as k8s from "@pulumi/kubernetes";
 import {
+    DATABASE_HOSTNAME,
     DATABASE_NAME,
     DATABASE_PASSWORD,
     DATABASE_USERNAME,
-    INGRESS_CLASS_ANNOTATION,
+    HASURA_ADMIN_SECRET,
     HASURA_DEPLOYMENT_NAME,
     HASURA_ENDPOINT,
     HASURA_INGRESS_NAME,
     HASURA_SERVICE_NAME,
-    HASURA_TLS_SECRET,
-    PRODUCTION_CLUSTER_ISSUER_ANNOTATION,
-    DATABASE_HOSTNAME, HASURA_ADMIN_SECRET, STAGING_CLUSTER_ISSUER_ANNOTATION
+    HASURA_TLS_SECRET
 } from "../constants";
 import {Service} from "@pulumi/kubernetes/core/v1";
 import {interpolate} from "@pulumi/pulumi";
 import {Chart} from "@pulumi/kubernetes/helm/v2";
 import {Chui} from "@chuistack/chui-lib";
+
+const {Ingress} = Chui.App;
 
 
 /**
@@ -143,11 +144,11 @@ const configureIngress = (service: Service) => {
                 "name": HASURA_INGRESS_NAME,
                 "namespace": "default",
                 "annotations": {
-                    ...INGRESS_CLASS_ANNOTATION,
+                    ...Ingress.getIngressClassAnnotation(),
                     ...(
-                        Chui.Config.loadCurrentConfig().environment === "production" ?
-                            PRODUCTION_CLUSTER_ISSUER_ANNOTATION :
-                            STAGING_CLUSTER_ISSUER_ANNOTATION
+                        Chui.Environment.getEnv() === "production" ?
+                            Ingress.getProductionClusterIssuerAnnotation() :
+                            Ingress.getStagingClusterIssuerAnnotation()
                     ),
                 }
             },
