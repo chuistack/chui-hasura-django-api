@@ -3,7 +3,8 @@ source: git@github.com:chuistack/chui-hasura-django-api.git
 type: app
 name: {{application}}
 globalAppName: {{globalAppName}}
+pulumiOrgName: {{pulumiOrgName}}
 dependencies:
-  storage: minio
-  auth: keycloak
+  storage: git@github.com:chuistack/chui-storage-minio.git
+  auth: git@github.com:chuistack/chui-auth-keycloak.git
   serverless: openfaas
